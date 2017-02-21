@@ -8,6 +8,13 @@ public class Submission {
     private String code;
 
 
+    public Submission(long userId, long problemId, ProgrammingLanguage programmingLanguage, String code) {
+        this.userId = userId;
+        this.problemId = problemId;
+        this.programmingLanguage = programmingLanguage;
+        this.code = code;
+    }
+
     public long getUserId() {
         return userId;
     }
