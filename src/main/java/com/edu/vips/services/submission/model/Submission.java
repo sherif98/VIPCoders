@@ -46,4 +46,14 @@ public class Submission {
     public void setCode(String code) {
         this.code = code;
     }
+
+    @Override
+    public String toString() {
+        return "Submission{" +
+                "userId=" + userId +
+                ", problemId=" + problemId +
+                ", programmingLanguage=" + programmingLanguage +
+                ", code='" + code + '\'' +
+                '}';
+    }
 }
