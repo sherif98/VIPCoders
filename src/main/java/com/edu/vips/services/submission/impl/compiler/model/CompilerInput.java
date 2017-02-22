@@ -6,6 +6,11 @@ public class CompilerInput {
     private String code;
     private ProgrammingLanguage programmingLanguage;
 
+    public CompilerInput(String code, ProgrammingLanguage programmingLanguage) {
+        this.code = code;
+        this.programmingLanguage = programmingLanguage;
+    }
+
     public String getCode() {
         return code;
     }
@@ -20,5 +25,13 @@ public class CompilerInput {
 
     public void setProgrammingLanguage(ProgrammingLanguage programmingLanguage) {
         this.programmingLanguage = programmingLanguage;
+    }
+
+    @Override
+    public String toString() {
+        return "CompilerInput{" +
+                "code='" + code + '\'' +
+                ", programmingLanguage=" + programmingLanguage +
+                '}';
     }
 }

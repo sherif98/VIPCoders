@@ -5,14 +5,14 @@ public class Submission {
     private long userId;
     private long problemId;
     private ProgrammingLanguage programmingLanguage;
-    private String code;
+    private String sourceCode;
 
 
-    public Submission(long userId, long problemId, ProgrammingLanguage programmingLanguage, String code) {
+    public Submission(long userId, long problemId, ProgrammingLanguage programmingLanguage, String sourceCode) {
         this.userId = userId;
         this.problemId = problemId;
         this.programmingLanguage = programmingLanguage;
-        this.code = code;
+        this.sourceCode = sourceCode;
     }
 
     public long getUserId() {
@@ -39,12 +39,12 @@ public class Submission {
         this.programmingLanguage = programmingLanguage;
     }
 
-    public String getCode() {
-        return code;
+    public String getSourceCode() {
+        return sourceCode;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setSourceCode(String sourceCode) {
+        this.sourceCode = sourceCode;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Submission {
                 "userId=" + userId +
                 ", problemId=" + problemId +
                 ", programmingLanguage=" + programmingLanguage +
-                ", code='" + code + '\'' +
+                ", sourceCode='" + sourceCode + '\'' +
                 '}';
     }
 }

@@ -1,8 +1,8 @@
 package com.edu.vips.services.submission.api;
 
 import com.edu.vips.services.submission.model.Submission;
-import com.edu.vips.services.submission.model.SubmissionFeedbackStatus;
+import com.edu.vips.services.submission.model.SubmissionFeedback;
 
 public interface ProblemsSubmissionService {
-    SubmissionFeedbackStatus submit(Submission submission);
+    SubmissionFeedback submit(Submission submission);
 }

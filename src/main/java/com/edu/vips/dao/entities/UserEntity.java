@@ -16,10 +16,10 @@ public class UserEntity {
     private String email;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<ProblemEntity> solvedProblem;
+    private Set<ProblemEntity> solvedProblems;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<ProblemEntity> bookmarkedProblem;
+    private Set<ProblemEntity> bookmarkedProblems;
 
     public long getId() {
         return id;
@@ -53,20 +53,20 @@ public class UserEntity {
         this.email = email;
     }
 
-    public Set<ProblemEntity> getSolvedProblem() {
-        return solvedProblem;
+    public Set<ProblemEntity> getSolvedProblems() {
+        return solvedProblems;
     }
 
-    public void setSolvedProblem(Set<ProblemEntity> solvedProblem) {
-        this.solvedProblem = solvedProblem;
+    public void setSolvedProblems(Set<ProblemEntity> solvedProblems) {
+        this.solvedProblems = solvedProblems;
     }
 
-    public Set<ProblemEntity> getBookmarkedProblem() {
-        return bookmarkedProblem;
+    public Set<ProblemEntity> getBookmarkedProblems() {
+        return bookmarkedProblems;
     }
 
-    public void setBookmarkedProblem(Set<ProblemEntity> bookmarkedProblem) {
-        this.bookmarkedProblem = bookmarkedProblem;
+    public void setBookmarkedProblems(Set<ProblemEntity> bookmarkedProblems) {
+        this.bookmarkedProblems = bookmarkedProblems;
     }
 
     @Override
