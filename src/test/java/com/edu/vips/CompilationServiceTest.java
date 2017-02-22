@@ -19,7 +19,7 @@ public class CompilationServiceTest {
     private CompilationService compilationService;
 
     @Test
-    public void fullCompilationProcess() {
+    public void javaCompilationProcess() {
         String code = "public class Solution {\n" +
                 "    public static void main(String[] args) {\n" +
                 "        System.out.println(\"Hello World\");\n" +
@@ -27,6 +27,22 @@ public class CompilationServiceTest {
                 "}";
 
         CompilerInput compilerInput = new CompilerInput(code, ProgrammingLanguage.JAVA);
+        CompilationOutput compilationOutput = compilationService.compile(compilerInput);
+        System.out.println(compilationOutput);
+    }
+
+    @Test
+    public void cCompilationProcess() {
+        String code = "#include <stdio.h>\n" +
+                "#include <stdlib.h>\n" +
+                "\n" +
+                "int main()\n" +
+                "{\n" +
+                "    printf(\"Hello world!\\n\");\n" +
+                "    return 0;\n" +
+                "}\n";
+
+        CompilerInput compilerInput = new CompilerInput(code, ProgrammingLanguage.C);
         CompilationOutput compilationOutput = compilationService.compile(compilerInput);
         System.out.println(compilationOutput);
     }

@@ -6,7 +6,7 @@ public enum ProgrammingLanguage {
     ), SCALA(
             "", "", ".sc"
     ), C(
-            "", "", ".c"
+            "gcc", "", ".c"
     ), CPP(
             "", "", ".cpp"
     ), PYTHON(
