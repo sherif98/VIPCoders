@@ -1,50 +1,43 @@
 package com.edu.vips.services.submission.impl.runner.model;
 
+import com.edu.vips.services.storage.model.Problem;
 import com.edu.vips.services.submission.model.ProgrammingLanguage;
 
 public class RunnerInput {
 
     private ProgrammingLanguage programmingLanguage;
     private String objectFileName;
-    private long problemId;
+    private Problem problem;
 
 
-    public RunnerInput(ProgrammingLanguage programmingLanguage, String objectFileName, long problemId) {
+    public RunnerInput(ProgrammingLanguage programmingLanguage, String objectFileName, Problem problem) {
         this.programmingLanguage = programmingLanguage;
         this.objectFileName = objectFileName;
-        this.problemId = problemId;
+        this.problem = problem;
     }
 
-    public long getProblemId() {
-        return problemId;
-    }
-
-    public void setProblemId(long problemId) {
-        this.problemId = problemId;
-    }
 
     public ProgrammingLanguage getProgrammingLanguage() {
         return programmingLanguage;
     }
 
-    public void setProgrammingLanguage(ProgrammingLanguage programmingLanguage) {
-        this.programmingLanguage = programmingLanguage;
-    }
 
     public String getObjectFileName() {
         return objectFileName;
     }
 
-    public void setObjectFileName(String objectFileName) {
-        this.objectFileName = objectFileName;
+
+    public Problem getProblem() {
+        return problem;
     }
+
 
     @Override
     public String toString() {
         return "RunnerInput{" +
                 "programmingLanguage=" + programmingLanguage +
                 ", objectFileName='" + objectFileName + '\'' +
-                ", problemId=" + problemId +
+                ", problemId=" + problem.getId() +
                 '}';
     }
 }

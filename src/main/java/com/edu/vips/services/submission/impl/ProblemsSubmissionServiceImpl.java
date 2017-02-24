@@ -1,5 +1,7 @@
 package com.edu.vips.services.submission.impl;
 
+import com.edu.vips.services.storage.api.ProblemStorageService;
+import com.edu.vips.services.storage.model.Problem;
 import com.edu.vips.services.submission.api.ProblemsSubmissionService;
 import com.edu.vips.services.submission.impl.compiler.api.CompilationService;
 import com.edu.vips.services.submission.impl.compiler.model.CompilationOutput;
@@ -17,6 +19,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProblemsSubmissionServiceImpl implements ProblemsSubmissionService {
+
+    @Autowired
+    private ProblemStorageService problemStorageService;
 
 
     @Autowired
@@ -40,7 +45,7 @@ public class ProblemsSubmissionServiceImpl implements ProblemsSubmissionService 
 
     private SubmissionFeedback getSubmissionFeedback(RunnerOutput runnerOutput) {
         SubmissionFeedback submissionFeedback = new SubmissionFeedback();
-        switch (runnerOutput.getRunnerStatus()) {
+        switch (runnerOutput.getRunStatus()) {
             case ACCEPTED:
                 submissionFeedback.setSubmissionFeedbackStatus(SubmissionFeedbackStatus.ACCEPTED);
             case WRONG_ANSWER:
@@ -63,9 +68,8 @@ public class ProblemsSubmissionServiceImpl implements ProblemsSubmissionService 
     }
 
     private RunnerOutput run(ProgrammingLanguage programmingLanguage, String objectFileName, long problemId) {
-        RunnerInput runnerInput = new RunnerInput(programmingLanguage, objectFileName, problemId);
+        Problem problem = problemStorageService.getProblemById(problemId);
+        RunnerInput runnerInput = new RunnerInput(programmingLanguage, objectFileName, problem);
         return testRunnerService.run(runnerInput);
     }
-
-
 }

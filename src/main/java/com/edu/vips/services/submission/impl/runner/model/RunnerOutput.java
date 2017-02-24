@@ -3,13 +3,8 @@ package com.edu.vips.services.submission.impl.runner.model;
 public class RunnerOutput {
 
     private long testFailed;
-    private RunnerStatus runnerStatus;
+    private RunStatus runStatus;
 
-
-    public RunnerOutput(long testFailed, RunnerStatus runnerStatus) {
-        this.testFailed = testFailed;
-        this.runnerStatus = runnerStatus;
-    }
 
     public long getTestFailed() {
         return testFailed;
@@ -19,19 +14,19 @@ public class RunnerOutput {
         this.testFailed = testFailed;
     }
 
-    public RunnerStatus getRunnerStatus() {
-        return runnerStatus;
+    public RunStatus getRunStatus() {
+        return runStatus;
     }
 
-    public void setRunnerStatus(RunnerStatus runnerStatus) {
-        this.runnerStatus = runnerStatus;
+    public void setRunStatus(RunStatus runStatus) {
+        this.runStatus = runStatus;
     }
 
     @Override
     public String toString() {
         return "RunnerOutput{" +
                 "testFailed=" + testFailed +
-                ", runnerStatus=" + runnerStatus +
+                ", runStatus=" + runStatus +
                 '}';
     }
 }
