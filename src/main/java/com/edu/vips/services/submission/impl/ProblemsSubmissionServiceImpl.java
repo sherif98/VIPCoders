@@ -49,12 +49,16 @@ public class ProblemsSubmissionServiceImpl implements ProblemsSubmissionService 
         switch (runnerOutput.getRunStatus()) {
             case ACCEPTED:
                 submissionFeedback.setSubmissionFeedbackStatus(SubmissionFeedbackStatus.ACCEPTED);
+                break;
             case WRONG_ANSWER:
                 submissionFeedback.setSubmissionFeedbackStatus(SubmissionFeedbackStatus.WRONG_ANSWER);
-                submissionFeedback.setTestFailed(runnerOutput.getTestFailed());
+                break;
             case TIME_LIMIT_EXCEEDED:
                 submissionFeedback.setSubmissionFeedbackStatus(SubmissionFeedbackStatus.TIME_LIMIT_EXCEEDED);
-                submissionFeedback.setTestFailed(runnerOutput.getTestFailed());
+                break;
+            case RUN_TIME_ERROR:
+                submissionFeedback.setSubmissionFeedbackStatus(SubmissionFeedbackStatus.RUNTIME_ERROR);
+                break;
         }
         return submissionFeedback;
     }

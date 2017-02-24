@@ -11,14 +11,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
-public abstract class TestExecutorTemplate {
+abstract class TestExecutorTemplate {
 
-    private static final Path binariesPath = Paths.get("C:", "Users", "Admin", "IdeaProjects",
+    static final Path binariesPath = Paths.get("C:", "Users", "Admin", "IdeaProjects",
             "VIPCoders", "src", "main", "resources", "static", "tempbinaries");
 
     abstract ProcessBuilder createProcessBuilder(String fileName);
 
-    public final TestExecutorOutput executeTest(String programInput, String binaryFileName, long timeLimit) {
+
+    final TestExecutorOutput executeTest(String programInput, String binaryFileName, long timeLimit) {
         TestExecutorOutput testExecutorOutput = new TestExecutorOutput();
         ProcessBuilder processBuilder = createProcessBuilder(binaryFileName);
         processBuilder.directory(binariesPath.toFile());
@@ -28,11 +29,7 @@ public abstract class TestExecutorTemplate {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        PrintStream printStream = new PrintStream(process.getOutputStream());
-        printStream.print(programInput);
-        System.out.println("program input is " + programInput);
-        printStream.close();
-        //close
+        setupProcessInput(process, programInput);
         try {
             if (!process.waitFor(timeLimit, TimeUnit.MILLISECONDS)) {
                 testExecutorOutput.setRunStatus(TestStatus.TIME_LIMIT_EXCEEDED);
@@ -46,12 +43,24 @@ public abstract class TestExecutorTemplate {
             testExecutorOutput.setRunStatus(TestStatus.RUN_TIME_ERROR);
             return testExecutorOutput;
         }
+        String output = getProcessOutput(process);
+        testExecutorOutput.setOutput(output);
+        testExecutorOutput.setRunStatus(TestStatus.OK);
+        return testExecutorOutput;
+    }
+
+    private String getProcessOutput(Process process) {
         BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
         StringBuilder output = new StringBuilder();
         stdInput.lines().forEach(output::append);
-        System.out.println(output);
-        testExecutorOutput.setOutput(output.toString());
-        testExecutorOutput.setRunStatus(TestStatus.OK);
-        return testExecutorOutput;
+        System.out.println(output);//TODO close stream ??
+        return output.toString();
+    }
+
+    private void setupProcessInput(Process process, String programInput) {
+        PrintStream printStream = new PrintStream(process.getOutputStream());
+        printStream.print(programInput);
+        System.out.println("program input is " + programInput);
+        printStream.close();
     }
 }

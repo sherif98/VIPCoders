@@ -17,24 +17,23 @@ public class CompilationServiceImpl implements CompilationService {
         switch (compilerInput.getProgrammingLanguage()) {
             case C:
                 compilationProcessTemplate = new CCompilationProcess();
-                compilationOutput = compilationProcessTemplate.runCompilationProcessTemplate(compilerInput);
                 break;
             case CPP:
-                compilationOutput = null;
+                compilationProcessTemplate = new CCompilationProcess();
                 break;
             case JAVA:
                 compilationProcessTemplate = new JavaCompilationProcess();
-                compilationOutput = compilationProcessTemplate.runCompilationProcessTemplate(compilerInput);
                 break;
             case PYTHON:
-                compilationOutput = null;
+                compilationProcessTemplate = new CCompilationProcess();
                 break;
             case SCALA:
-                compilationOutput = null;
+                compilationProcessTemplate = new CCompilationProcess();
                 break;
             default:
-                throw new IllegalStateException();
+                throw new IllegalStateException("Unsupported Language: cant Compile");
         }
+        compilationOutput = compilationProcessTemplate.runCompilationProcessTemplate(compilerInput);
         return compilationOutput;
     }
 }

@@ -2,7 +2,6 @@ package com.edu.vips.services.submission.model;
 
 public class SubmissionFeedback {
     private SubmissionFeedbackStatus submissionFeedbackStatus;
-    private long testFailed;
 
 
     public SubmissionFeedbackStatus getSubmissionFeedbackStatus() {
@@ -13,11 +12,10 @@ public class SubmissionFeedback {
         this.submissionFeedbackStatus = submissionFeedbackStatus;
     }
 
-    public long getTestFailed() {
-        return testFailed;
-    }
-
-    public void setTestFailed(long testFailed) {
-        this.testFailed = testFailed;
+    @Override
+    public String toString() {
+        return "SubmissionFeedback{" +
+                "submissionFeedbackStatus=" + submissionFeedbackStatus +
+                '}';
     }
 }

@@ -7,6 +7,10 @@ import com.edu.vips.services.submission.model.ProgrammingLanguage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Iterator;
 
 @Service
@@ -18,10 +22,25 @@ public class TestRunnerServiceImpl implements TestRunnerService {
 
     @Override
     public RunnerOutput run(RunnerInput runnerInput) {
-        TestExecutorTemplate testExecutorTemplate = getTestExecutorTemplate(runnerInput.getProgrammingLanguage());
-        RunnerOutput runnerOutput = new RunnerOutput();
+        RunnerOutput runnerOutput = executeTests(runnerInput);
+        cleanUpData(runnerInput.getObjectFileName() + runnerInput.getProgrammingLanguage().getBinaryFileExtension());
+        return runnerOutput;
+    }
+
+    private void cleanUpData(String fileName) {
+        Path filePath = Paths.get(TestExecutorTemplate.binariesPath.toString(), fileName);
+        try {
+            Files.delete(filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private RunnerOutput executeTests(RunnerInput runnerInput) {
         Problem problem = runnerInput.getProblem();
         Iterator<TestCase> testCaseIterator = testCasesFetcher.fetchTests(problem.getId());
+        TestExecutorTemplate testExecutorTemplate = getTestExecutorTemplate(runnerInput.getProgrammingLanguage());
+        RunnerOutput runnerOutput = new RunnerOutput();
         while (testCaseIterator.hasNext()) {
             TestCase testCase = testCaseIterator.next();
             TestExecutorOutput testExecutorOutput = testExecutorTemplate.executeTest(testCase.getInput(),
@@ -65,7 +84,7 @@ public class TestRunnerServiceImpl implements TestRunnerService {
             case SCALA:
                 return new JavaTestExecutor();
             default:
-                throw new IllegalStateException("Unsupported Programming Language");
+                throw new IllegalStateException("Unsupported Programming Language: Cant run");
         }
     }
 

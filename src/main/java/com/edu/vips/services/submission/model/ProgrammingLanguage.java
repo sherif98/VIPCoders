@@ -18,6 +18,7 @@ public enum ProgrammingLanguage {
         this.compilationCommand = compilationCommand;
         this.executionCommand = executionCommand;
         this.sourceFileExtension = sourceFileExtension;
+        this.binaryFileExtension = binaryFileExtension;
     }
 
 
