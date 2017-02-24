@@ -42,10 +42,13 @@ public class TestRunnerServiceImpl implements TestRunnerService {
                     return runnerOutput;
             }
         }
+        runnerOutput.setRunStatus(RunStatus.ACCEPTED);
         return runnerOutput;
     }
 
     private boolean verifyAnswer(String output, String answer) {
+        System.out.println(output);
+        System.out.println(answer);
         return output.equals(answer);
     }
 

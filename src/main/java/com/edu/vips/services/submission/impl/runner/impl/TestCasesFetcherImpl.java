@@ -74,8 +74,9 @@ class TestCasesFetcherImpl implements TestCasesFetcher {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            inputList.forEach(input::append);
-            return input.toString();
+            inputList.forEach(line -> input.append(line + "\n"));
+            int idx = input.toString().lastIndexOf('\n');
+            return input.toString().substring(0, idx);
         }
     }
 }

@@ -2,28 +2,29 @@ package com.edu.vips.services.submission.model;
 
 public enum ProgrammingLanguage {
     JAVA(
-            "javac", "java", ".java"
+            "javac", "java", ".java", ".class"
     ), SCALA(
-            "", "", ".sc"
+            "", "", ".sc", ".class"
     ), C(
-            "gcc", "", ".c"
+            "gcc", "", ".c", ".exe"
     ), CPP(
-            "", "", ".cpp"
+            "", "", ".cpp", ".exe"
     ), PYTHON(
-            "", "", ".py"
+            "", "", ".py", ""
     );
 
 
-    ProgrammingLanguage(String compilationCommand, String executionCommand, String fileExtension) {
+    ProgrammingLanguage(String compilationCommand, String executionCommand, String sourceFileExtension, String binaryFileExtension) {
         this.compilationCommand = compilationCommand;
         this.executionCommand = executionCommand;
-        this.fileExtension = fileExtension;
+        this.sourceFileExtension = sourceFileExtension;
     }
 
 
     private String compilationCommand;
     private String executionCommand;
-    private String fileExtension;
+    private String sourceFileExtension;
+    private String binaryFileExtension;
 
     public String getCompilationCommand() {
         return compilationCommand;
@@ -33,7 +34,11 @@ public enum ProgrammingLanguage {
         return executionCommand;
     }
 
-    public String getFileExtension() {
-        return fileExtension;
+    public String getSourceFileExtension() {
+        return sourceFileExtension;
+    }
+
+    public String getBinaryFileExtension() {
+        return binaryFileExtension;
     }
 }

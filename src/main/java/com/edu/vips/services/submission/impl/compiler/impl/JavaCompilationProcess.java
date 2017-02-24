@@ -18,7 +18,7 @@ public class JavaCompilationProcess extends CompilationProcessTemplate {
     @Override
     String getFileName() {
         generatedFileName = generateFileName();
-        return CLASS_BASE_NAME + generateFileName() + ProgrammingLanguage.JAVA.getFileExtension();
+        return CLASS_BASE_NAME + generateFileName() + ProgrammingLanguage.JAVA.getSourceFileExtension();
     }
 
     @Override

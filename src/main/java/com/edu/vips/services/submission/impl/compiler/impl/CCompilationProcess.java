@@ -11,7 +11,7 @@ public class CCompilationProcess extends CompilationProcessTemplate {
 
     @Override
     String getFileName() {
-        return generateFileName() + ProgrammingLanguage.C.getFileExtension();
+        return generateFileName() + ProgrammingLanguage.C.getSourceFileExtension();
     }
 
     @Override

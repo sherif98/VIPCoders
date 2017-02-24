@@ -29,7 +29,9 @@ public abstract class TestExecutorTemplate {
             e.printStackTrace();
         }
         PrintStream printStream = new PrintStream(process.getOutputStream());
-        printStream.print(printStream);
+        printStream.print(programInput);
+        System.out.println("program input is " + programInput);
+        printStream.close();
         //close
         try {
             if (!process.waitFor(timeLimit, TimeUnit.MILLISECONDS)) {
@@ -47,6 +49,7 @@ public abstract class TestExecutorTemplate {
         BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
         StringBuilder output = new StringBuilder();
         stdInput.lines().forEach(output::append);
+        System.out.println(output);
         testExecutorOutput.setOutput(output.toString());
         testExecutorOutput.setRunStatus(TestStatus.OK);
         return testExecutorOutput;

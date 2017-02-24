@@ -50,6 +50,7 @@ public class CompilationServiceTest {
         System.out.println(compilationOutput);
         Assert.assertEquals(CompilationStatus.SUCCESS, compilationOutput.getCompilationStatus());
     }
+
     @Test
     public void failureJavaCompilationProcess() {
         String code = "public class Solution {\n" +
@@ -63,6 +64,7 @@ public class CompilationServiceTest {
         System.out.println(compilationOutput);
         Assert.assertEquals(CompilationStatus.FAIL, compilationOutput.getCompilationStatus());
     }
+
     @Test
     public void failureCCompilationProcess() {
         String code = "#include <stdio.h>\n" +
@@ -78,5 +80,25 @@ public class CompilationServiceTest {
         CompilationOutput compilationOutput = compilationService.compile(compilerInput);
         System.out.println(compilationOutput);
         Assert.assertEquals(CompilationStatus.FAIL, compilationOutput.getCompilationStatus());
+    }
+
+
+    @Test
+    public void successfulJavaCompilationProcessWithimports() {
+        String code = "import java.util.Scanner;\n" +
+                "public class Solution{\n" +
+                "    public static void main(String [] args){\n" +
+                "        Scanner in = new Scanner(System.in);\n" +
+                "        int a = in.nextInt();\n" +
+                "        int b = in.nextInt();\n" +
+                "        System.out.println(a + b);\n" +
+                "    }\n" +
+                "\n" +
+                "}";
+
+        CompilerInput compilerInput = new CompilerInput(code, ProgrammingLanguage.JAVA);
+        CompilationOutput compilationOutput = compilationService.compile(compilerInput);
+        System.out.println(compilationOutput);
+        Assert.assertEquals(CompilationStatus.SUCCESS, compilationOutput.getCompilationStatus());
     }
 }

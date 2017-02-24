@@ -14,6 +14,7 @@ import com.edu.vips.services.submission.model.ProgrammingLanguage;
 import com.edu.vips.services.submission.model.Submission;
 import com.edu.vips.services.submission.model.SubmissionFeedback;
 import com.edu.vips.services.submission.model.SubmissionFeedbackStatus;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,8 +39,8 @@ public class ProblemsSubmissionServiceImpl implements ProblemsSubmissionService 
             submissionFeedback.setSubmissionFeedbackStatus(SubmissionFeedbackStatus.COMPILATION_ERROR);
             return submissionFeedback;
         }
-        RunnerOutput runnerOutput = run(submission.getProgrammingLanguage(), compilationOutput.getObjectFileName(),
-                submission.getProblemId());
+        RunnerOutput runnerOutput = run(submission.getProgrammingLanguage(),
+                FilenameUtils.removeExtension(compilationOutput.getObjectFileName()), submission.getProblemId());
         return getSubmissionFeedback(runnerOutput);
     }
 
