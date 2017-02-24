@@ -13,17 +13,11 @@ public class CompilationOutput {
         return compilationStatus;
     }
 
-    public void setCompilationStatus(CompilationStatus compilationStatus) {
-        this.compilationStatus = compilationStatus;
-    }
 
     public String getObjectFileName() {
         return objectFileName;
     }
 
-    public void setObjectFileName(String objectFileName) {
-        this.objectFileName = objectFileName;
-    }
 
     @Override
     public String toString() {

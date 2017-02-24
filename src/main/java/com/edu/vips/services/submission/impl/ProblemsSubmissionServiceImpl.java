@@ -13,7 +13,9 @@ import com.edu.vips.services.submission.model.Submission;
 import com.edu.vips.services.submission.model.SubmissionFeedback;
 import com.edu.vips.services.submission.model.SubmissionFeedbackStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ProblemsSubmissionServiceImpl implements ProblemsSubmissionService {
 
 
